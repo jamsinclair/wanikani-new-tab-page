@@ -1,0 +1,94 @@
+:root {
+  --light-bg: #eee;
+  --light-text: #222;
+  --light-lessons-color: #ff00aa;
+  --light-reviews-color: #00aaff;
+  --dark-bg: #222;
+  --dark-text: #fff;
+  --dark-lessons-color: #ff0088;
+  --dark-reviews-color: #0088ff;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--theme-bg, var(--light-bg));
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: background 200ms ease-in-out;
+}
+
+.loading .button-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-container {
+  display: flex;
+  padding: 25px;
+  margin: 0 auto;
+  max-width: 800px;
+  min-height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin: auto;
+  padding-bottom: 60px;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 100ms ease-in;
+}
+
+.button {
+  border-radius: 5px;
+  box-shadow: inset 0 -3px 1px rgba(0,0,0,0.2),inset 0 3px 1px rgba(0,0,0,0);
+  color: #fff;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  flex: 1 1 0;
+  line-height: 1;
+  justify-content: space-between;
+  min-width: 240px;
+  padding: 40px;
+  text-decoration: none;
+}
+
+.lessons {
+  background-color: var(--theme-lessons-color, var(--light-lessons-color));
+}
+
+.reviews {
+  background-color: var(--theme-reviews-color, var(--light-reviews-color));
+}
+
+.button--disabled {
+  background-color: #b1b1b1;
+}
+
+.message {
+  color: var(--theme-text, var(--light-text));
+  font-weight: 700;
+  margin: 0 auto 20px;
+  max-width: 550px;
+  text-align: center;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-bg: var(--dark-bg);
+    --theme-text: var(--dark-text);
+    --theme-reviews-color: var(--dark-reviews-color);
+    --theme-lessons-color: var(--dark-lessons-color);
+  }
+}

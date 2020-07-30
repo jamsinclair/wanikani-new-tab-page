@@ -1,0 +1,33 @@
+{
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@jamsinclair.nz",
+      "strict_min_version": "57.0"
+    }
+  },
+  "manifest_version": 2,
+  "name": "Wanikani New Tab Page",
+  "version": "0.1.0",
+  "description": "Shows new tab page with your summary of available Wanikani lessons and reviews",
+  "developer": {
+    "name": "jamsinclair",
+    "url": "https://github.com/jamsinclair/wanikani-new-tab-page"
+  },
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "96": "images/icon-96.png",
+    "128": "images/icon-128.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
+  "permissions": [
+    "storage",
+    "https://api.wanikani.com/*"
+  ],
+  "chrome_url_overrides" : {
+    "newtab": "app.html"
+  }
+}

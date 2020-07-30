@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanikani New Tab Page | Options</title>
+  <link href="./options.css" rel="stylesheet" />
+</head>
+<body>
+  <form>
+    <p>
+      This extension uses your Wanikani API token to fetch your personal summary data from Wanikani.
+      You can obtain and manage your v2 API token in 
+      <a target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.wanikani.com/settings/personal_access_tokens">
+        Settings / API Tokens
+      </a>
+      on WaniKani.
+    </p>
+    <strong>API Token:</strong>
+    <input id="apiToken" type="password" disabled />
+    <button type="submit">Save</button>
+  </form>
+  <script src="./options.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "wanikani-new-tab-page",
+  "version": "0.1.0",
+  "description": "WIP",
+  "scripts": {
+    "lint": "xo",
+    "lint-ext": "web-ext lint -s src",
+    "test": "npm run lint && npm run lint-ext"
+  },
+  "keywords": [],
+  "author": "Jamie Sinclair <jamsinclairnz@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "web-ext": "^5.0.0",
+    "xo": "^0.32.1"
+  },
+  "xo": {
+    "prettier": true,
+    "space": true,
+    "rules": {
+      "import/extensions": "off"
+    }
+  }
+}
