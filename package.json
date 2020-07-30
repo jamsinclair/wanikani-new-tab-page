@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "xo",
     "lint-ext": "web-ext lint -s src",
-    "test": "npm run lint && npm run lint-ext"
+    "test": "npm run lint && npm run lint-ext",
+    "build:chrome": "zip -r chrome-extension.zip src/*"
   },
   "keywords": [],
   "author": "Jamie Sinclair <jamsinclairnz@gmail.com>",
