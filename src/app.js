@@ -1,14 +1,19 @@
-/* global document fetch Headers */
+/* global window document fetch Headers */
 import getBrowser from './browser.js';
 
 const b = getBrowser();
 
-const getSummary = (apiToken) => {
+const getSummary = async (apiToken) => {
   const headers = new Headers({
     'Wanikani-Revision': '20170710',
     Authorization: `Bearer ${apiToken}`
   });
-  return fetch('https://api.wanikani.com/v2/summary', {headers})
+  const {cacheBreakKey = Date.now()} = await b.storage.local.get([
+    'cacheBreakKey'
+  ]);
+  return fetch(`https://api.wanikani.com/v2/summary?${cacheBreakKey}`, {
+    headers
+  })
     .then((response) => response.json())
     .then((response) => response.data);
 };
@@ -42,6 +47,21 @@ const updateButtonCount = (selector, count) => {
   element.querySelector('.count').textContent = count;
 };
 
+const handleButtonClick = async (event) => {
+  if (!event.metaKey) {
+    event.preventDefault();
+  }
+
+  // Update the Cache Break key to a timestamp of now
+  // Anticipating that when the user next opens a tab it will be
+  // after they complete lesson or review
+  await b.storage.local.set({cacheBreakKey: Date.now()});
+
+  if (!event.metaKey) {
+    window.location = event.target.href;
+  }
+};
+
 const updatePage = (data) => {
   if (!data) {
     document.querySelector('.message').innerHTML =
@@ -53,6 +73,10 @@ const updatePage = (data) => {
   updateButtonCount('.lessons', getLessonsCount(data));
   updateButtonCount('.reviews', getReviewsCount(data));
   document.querySelector('body').classList.remove('loading');
+
+  document.querySelectorAll('.button').forEach((element) => {
+    element.addEventListener('click', handleButtonClick);
+  });
 };
 
 const init = async () => {
