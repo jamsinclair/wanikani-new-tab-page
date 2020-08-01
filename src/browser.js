@@ -1,20 +1,21 @@
 /* global browser chrome */
-const storageSync = {
+const getStorageContainerWithPromises = (container) => ({
   get(keys) {
     return new Promise((resolve) => {
-      chrome.storage.sync.get(keys, resolve);
+      container.get(keys, resolve);
     });
   },
   set(data) {
     return new Promise((resolve) => {
-      chrome.storage.sync.set(data, resolve);
+      container.set(data, resolve);
     });
   }
-};
+});
 
 const chromeBrowser = {
   storage: {
-    sync: storageSync
+    local: getStorageContainerWithPromises(chrome.storage.local),
+    sync: getStorageContainerWithPromises(chrome.storage.sync)
   }
 };
 
