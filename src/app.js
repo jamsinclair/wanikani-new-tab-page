@@ -2,15 +2,29 @@
 import getBrowser from './browser.js';
 
 const b = getBrowser();
+const HOUR = 3600000;
+
+const getCacheBreakKey = async () => {
+  const {cacheBreakKey = Date.now()} = await b.storage.local.get([
+    'cacheBreakKey'
+  ]);
+
+  const now = Date.now();
+  if (Number(cacheBreakKey) > now - HOUR) {
+    return cacheBreakKey;
+  }
+
+  await b.storage.local.set({cacheBreakKey: now});
+  return now;
+};
 
 const getSummary = async (apiToken) => {
   const headers = new Headers({
     'Wanikani-Revision': '20170710',
     Authorization: `Bearer ${apiToken}`
   });
-  const {cacheBreakKey = Date.now()} = await b.storage.local.get([
-    'cacheBreakKey'
-  ]);
+
+  const cacheBreakKey = await getCacheBreakKey();
   return fetch(`https://api.wanikani.com/v2/summary?${cacheBreakKey}`, {
     headers
   })
