@@ -71,8 +71,9 @@ const handleButtonClick = async (event) => {
   // after they complete lesson or review
   await b.storage.local.set({cacheBreakKey: Date.now()});
 
-  if (!event.metaKey) {
-    window.location = event.target.href;
+  const closestLink = event.target.closest('a');
+  if (!event.metaKey && closestLink) {
+    window.location = closestLink.href;
   }
 };
 
