@@ -6,12 +6,14 @@
     "lint": "xo",
     "lint-ext": "web-ext lint -s src",
     "test": "npm run lint && npm run lint-ext",
-    "build:chrome": "rm -f chrome-extension.zip && zip -r chrome-extension.zip src/*"
+    "build:chrome": "rm -f chrome-extension.zip && zip -r chrome-extension.zip src/*",
+    "version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/manifest.json && git add src/manifest.json"
   },
   "keywords": [],
   "author": "Jamie Sinclair <jamsinclairnz@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "replace-in-files-cli": "^0.3.1",
     "web-ext": "^5.0.0",
     "xo": "^0.32.1"
   },
